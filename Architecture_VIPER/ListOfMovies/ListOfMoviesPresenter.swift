@@ -9,13 +9,13 @@ import Foundation
 
 //MARK: DELEGATION PATTERN
 protocol ListOfMoviesUI: AnyObject {
-    func update(movies: [PopularMovieEntitiy])
+    func update(movies: [MovieViewModel])
 }
 
 class ListOfMoviesPresenter {
-    var ui: ListOfMoviesUI?
+    var view: ListOfMoviesUI?
     private let listOfMoviesInteractor: ListOfMoviesInteractor
-    var models: [PopularMovieEntitiy] = []
+    var viewModels: [MovieViewModel] = []
     
     init(listOfMoviesInteractor: ListOfMoviesInteractor) {
         self.listOfMoviesInteractor = listOfMoviesInteractor
@@ -24,9 +24,13 @@ class ListOfMoviesPresenter {
     func onViewAppear() {
         Task{
             do {
-                models = try await listOfMoviesInteractor.getListOfMovies().results
-                self.ui?.update(movies: models)
-                
+               let models = try await listOfMoviesInteractor.getListOfMovies().results
+                 viewModels = models.map { entity in
+                    MovieViewModel(title: entity.title,
+                                   overView: entity.overview,
+                                   imageURL: entity.imageURL)
+                }
+                view?.update(movies: viewModels)
             } catch {
                 print("Error: \(error)")
             }

@@ -69,10 +69,10 @@ class MovieCellView: UITableViewCell {
             movieDescription.bottomAnchor.constraint(lessThanOrEqualTo: bottomAnchor, constant: -12),
         ])
     }
-    func configure(model: PopularMovieEntitiy) {
+    func configure(model: MovieViewModel) {
         movieImageView.kf.setImage(with: URL(string: "https://image.tmdb.org/t/p/w200" + model.imageURL))
         movieName.text = model.title
-        movieDescription.text = model.overview
+        movieDescription.text = model.overView
     }
     
 }
