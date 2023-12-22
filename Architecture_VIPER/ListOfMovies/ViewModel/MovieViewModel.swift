@@ -10,5 +10,5 @@ import Foundation
 struct MovieViewModel {
     var title: String
     var overView: String
-    var imageURL: String
+    var imageURL: URL?
 }

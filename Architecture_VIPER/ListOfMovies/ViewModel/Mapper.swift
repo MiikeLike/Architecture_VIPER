@@ -11,6 +11,6 @@ struct Mapper {
     func map(entity: PopularMovieEntitiy) -> MovieViewModel {
         MovieViewModel(title: entity.title,
                        overView: entity.overview,
-                       imageURL: entity.imageURL)
+                       imageURL: URL(string: "https://image.tmdb.org/t/p/w200" + entity.imageURL))
     }
 }
