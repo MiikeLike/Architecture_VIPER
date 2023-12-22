@@ -16,24 +16,25 @@ class ListOfMoviesPresenter {
     var view: ListOfMoviesUI?
     private let listOfMoviesInteractor: ListOfMoviesInteractor
     var viewModels: [MovieViewModel] = []
+    private let mapper: Mapper
     
-    init(listOfMoviesInteractor: ListOfMoviesInteractor) {
+    init(listOfMoviesInteractor: ListOfMoviesInteractor, mapper: Mapper = Mapper()) {
         self.listOfMoviesInteractor = listOfMoviesInteractor
+        self.mapper = mapper
     }
     
     func onViewAppear() {
-        Task{
+        Task {
             do {
-               let models = try await listOfMoviesInteractor.getListOfMovies().results
-                 viewModels = models.map { entity in
-                    MovieViewModel(title: entity.title,
-                                   overView: entity.overview,
-                                   imageURL: entity.imageURL)
-                }
+                let models = try await listOfMoviesInteractor.getListOfMovies().results
+                let mappedViewModels = models.map { mapper.map(entity: $0) }
+                viewModels = mappedViewModels
                 view?.update(movies: viewModels)
             } catch {
                 print("Error: \(error)")
             }
         }
     }
+
 }
+

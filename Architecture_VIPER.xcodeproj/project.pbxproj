@@ -21,6 +21,7 @@
 		6E1F9A7A2B34742A00C8FF61 /* MovieCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1F9A792B34742A00C8FF61 /* MovieCellView.swift */; };
 		6E1F9A7D2B347BE700C8FF61 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1F9A7C2B347BE700C8FF61 /* Kingfisher */; };
 		6E99F2222B3592AF001A8134 /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E99F2212B3592AF001A8134 /* MovieViewModel.swift */; };
+		6E99F2242B359F55001A8134 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E99F2232B359F55001A8134 /* Mapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		6E1F9A772B34481700C8FF61 /* PopularMovieResponseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularMovieResponseEntity.swift; sourceTree = "<group>"; };
 		6E1F9A792B34742A00C8FF61 /* MovieCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellView.swift; sourceTree = "<group>"; };
 		6E99F2212B3592AF001A8134 /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
+		6E99F2232B359F55001A8134 /* Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				6E99F2212B3592AF001A8134 /* MovieViewModel.swift */,
+				6E99F2232B359F55001A8134 /* Mapper.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				6E1F9A5C2B34446A00C8FF61 /* ViewController.swift in Sources */,
 				6E1F9A712B3444D300C8FF61 /* ListOfMoviesInteractor.swift in Sources */,
 				6E1F9A7A2B34742A00C8FF61 /* MovieCellView.swift in Sources */,
+				6E99F2242B359F55001A8134 /* Mapper.swift in Sources */,
 				6E1F9A6F2B3444C900C8FF61 /* ListOfMoviesPresenter.swift in Sources */,
 				6E1F9A732B3444E400C8FF61 /* ListOfMoviesRouter.swift in Sources */,
 				6E1F9A762B34473F00C8FF61 /* PopularMovieEntitiy.swift in Sources */,

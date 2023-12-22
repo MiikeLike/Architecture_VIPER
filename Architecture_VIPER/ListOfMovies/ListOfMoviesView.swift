@@ -54,11 +54,22 @@ extension ListOfMoviesView: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellView", for: indexPath) as! MovieCellView
-        let model = presenter!.viewModels[indexPath.row]//pendiente de implementar if-let
         
-        cell.configure(model: model)
+        // Verificamos que el presenter y el índice sean válidos
+        if let presenter = presenter, indexPath.row < presenter.viewModels.count {
+            let model = presenter.viewModels[indexPath.row]
+            cell.configure(model: model)
+        } else {
+            print("Error: Presenter is nil or indexPath is out of range.")
+            
+            print("Advertencia: No se pudo acceder al modelo en indexPath: \(indexPath.row).")
+            
+            assertionFailure("Error crítico: Se produjo un error inesperado en cellForRowAt.")
+        }
+        
         return cell
     }
+
     
     
 }
