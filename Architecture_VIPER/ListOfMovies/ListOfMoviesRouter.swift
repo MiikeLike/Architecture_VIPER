@@ -10,11 +10,12 @@ import UIKit
 
 class ListOfMoviesRouter {
     func showListOfMovies(window: UIWindow?) {
-        let view = ListOfMoviesView()
         let interactor = ListOfMoviesInteractor()
         let presenter = ListOfMoviesPresenter(listOfMoviesInteractor: interactor)
+        let view = ListOfMoviesView(presenter: presenter)
         presenter.view = view
-        view.presenter = presenter
+        //view.presenter = presenter
+        
         
         window?.rootViewController = view
         window?.makeKeyAndVisible()

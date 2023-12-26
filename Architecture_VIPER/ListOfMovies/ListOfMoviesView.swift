@@ -18,9 +18,10 @@ class ListOfMoviesView: UIViewController {
         return tableView
     }()
     
-    var presenter: ListOfMoviesPresenter?
+    private var presenter: ListOfMoviesPresenter
 
-    init() {
+    init(presenter: ListOfMoviesPresenter) {
+        self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,7 +34,7 @@ class ListOfMoviesView: UIViewController {
         
         view.backgroundColor = .blue
         setupTableView()
-        presenter?.onViewAppear()
+        presenter.onViewAppear()
     }
     private func setupTableView() {
         view.addSubview(moviesTableView)
@@ -49,24 +50,13 @@ class ListOfMoviesView: UIViewController {
 }
 extension ListOfMoviesView: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.viewModels.count ?? 0
+        presenter.viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellView", for: indexPath) as! MovieCellView
-        
-        // Verificamos que el presenter y el índice sean válidos
-        if let presenter = presenter, indexPath.row < presenter.viewModels.count {
             let model = presenter.viewModels[indexPath.row]
             cell.configure(model: model)
-        } else {
-            print("Error: Presenter is nil or indexPath is out of range.")
-            
-            print("Advertencia: No se pudo acceder al modelo en indexPath: \(indexPath.row).")
-            
-            assertionFailure("Error crítico: Se produjo un error inesperado en cellForRowAt.")
-        }
-        
         return cell
     }
 
