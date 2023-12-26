@@ -18,9 +18,9 @@ class ListOfMoviesView: UIViewController {
         return tableView
     }()
     
-    private var presenter: ListOfMoviesPresenter
+    private var presenter: ListOfMoviesPresentable
 
-    init(presenter: ListOfMoviesPresenter) {
+    init(presenter: ListOfMoviesPresentable) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -54,14 +54,14 @@ extension ListOfMoviesView: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellView", for: indexPath) as! MovieCellView
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCellView", for: indexPath) as? MovieCellView {
             let model = presenter.viewModels[indexPath.row]
             cell.configure(model: model)
-        return cell
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
-
-    
-    
 }
 
 extension ListOfMoviesView: ListOfMoviesUI {

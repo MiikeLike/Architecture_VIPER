@@ -13,7 +13,6 @@ class ListOfMoviesRouter {
         let interactor = ListOfMoviesInteractor()
         let presenter = ListOfMoviesPresenter(listOfMoviesInteractor: interactor)
         let view = ListOfMoviesView(presenter: presenter)
-        presenter.view = view
         //view.presenter = presenter
         
         

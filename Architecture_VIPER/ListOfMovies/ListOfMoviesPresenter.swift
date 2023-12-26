@@ -7,12 +7,18 @@
 
 import Foundation
 
+protocol ListOfMoviesPresentable: AnyObject {
+    var view: ListOfMoviesUI? { get }
+    var viewModels: [MovieViewModel] { get }
+    func onViewAppear()
+}
+
 //MARK: DELEGATION PATTERN
 protocol ListOfMoviesUI: AnyObject {
     func update(movies: [MovieViewModel])
 }
 
-class ListOfMoviesPresenter {
+class ListOfMoviesPresenter: ListOfMoviesPresentable {
     var view: ListOfMoviesUI?
     private let listOfMoviesInteractor: ListOfMoviesInteractor
     var viewModels: [MovieViewModel] = []
