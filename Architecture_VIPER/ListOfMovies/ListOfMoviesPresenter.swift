@@ -19,7 +19,7 @@ protocol ListOfMoviesUI: AnyObject {
 }
 
 class ListOfMoviesPresenter: ListOfMoviesPresentable {
-    var view: ListOfMoviesUI?
+   weak var view: ListOfMoviesUI?
     private let listOfMoviesInteractor: ListOfMoviesInteractor
     var viewModels: [MovieViewModel] = []
     private let mapper: Mapper

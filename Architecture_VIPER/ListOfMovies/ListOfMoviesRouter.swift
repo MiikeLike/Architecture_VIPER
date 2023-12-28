@@ -13,9 +13,8 @@ class ListOfMoviesRouter {
         let interactor = ListOfMoviesInteractor()
         let presenter = ListOfMoviesPresenter(listOfMoviesInteractor: interactor)
         let view = ListOfMoviesView(presenter: presenter)
-        //view.presenter = presenter
-        
-        
+        presenter.view = view
+   
         window?.rootViewController = view
         window?.makeKeyAndVisible()
     }
