@@ -13,17 +13,11 @@ protocol ListOfMoviesInteractable: AnyObject {
 }
 
 class ListOfMoviesInteractor: ListOfMoviesInteractable {
-    // Definimos un enum para representar los posibles errores del interactor
-    enum InteractorError: Error {
-        case networkingError
-        case decodingError
-    }
-
     // Modificamos la función para ser asíncrona y lanzar errores
     func getListOfMovies() async throws -> PopularMovieResponseEntity {
         // Utilizamos guard para manejar el caso donde no se puede crear la URL
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=44f387c88393699f2b01c8d6b0713e4d") else {
-            throw InteractorError.networkingError
+            throw APIError.networkError(NSError(domain: NSCocoaErrorDomain, code: NSURLErrorBadURL))
         }
         // Usamos await para realizar la solicitud de red de manera asíncrona
         let (data, _) = try await URLSession.shared.data(from: url)
@@ -34,7 +28,7 @@ class ListOfMoviesInteractor: ListOfMoviesInteractable {
         } catch {
             // En caso de error de decodificación, lanzamos un error correspondiente
             print("Error \(error)")
-            throw InteractorError.decodingError
+            throw APIError.decodingError(error)
         }
     }
 }
