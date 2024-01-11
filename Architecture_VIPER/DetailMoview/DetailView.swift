@@ -51,5 +51,20 @@ class DetailView: UIViewController {
         view.addSubview(movieImageView)
         view.addSubview(movieName)
         view.addSubview(movieDescription)
+        
+        NSLayoutConstraint.activate([
+            movieImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            movieImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 12),
+            movieImageView.heightAnchor.constraint(equalToConstant: 200),
+            movieImageView.widthAnchor.constraint(equalToConstant: 300),
+            
+            movieName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            movieName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            movieName.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 20), 
+            
+            movieDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            movieDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            movieDescription.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 20)
+        ])
     }
 }
