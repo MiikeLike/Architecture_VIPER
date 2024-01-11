@@ -12,19 +12,16 @@ protocol DetailInteractable: AnyObject {
 }
 
 class DetailInteractor {
-    // Constantes para la URL base y la clave de la API
-    private let baseURL = "https://api.themoviedb.org/3/movie/"
-    private let apiKey = "44f387c88393699f2b01c8d6b0713e4d"
 
-    func getDetailMovie(with id: String) async throws -> DetailMovieEntity {
+    func getDetailMovie(with id: String, apiConfig: APIConfigurable) async throws -> DetailMovieEntity {
         // Crear la URL utilizando URLComponents para una construcción más segura
-        guard var urlComponents = URLComponents(string: baseURL + id) else {
+        guard var urlComponents = URLComponents(string: APIConfigurable.baseURL + id) else {
             // Manejar el caso donde no se puede construir la URL correctamente
             throw APIError.networkError(NSError(domain: NSCocoaErrorDomain, code: NSURLErrorBadURL))
         }
         
         // Agregar el parámetro de la clave de la API a la URL
-        urlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey)]
+        urlComponents.queryItems = [URLQueryItem(name: "api_key", value: APIConfigurable.apiKey)]
 
         // Obtener la URL final después de agregar el parámetro de la clave de la API
         guard let url = urlComponents.url else {
