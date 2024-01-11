@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class DetailView: UIViewController {
     private let presenter: DetailPresentable
@@ -46,6 +47,7 @@ class DetailView: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupView()
+        presenter.onViewAppear()
     }
     func setupView() {
         view.addSubview(movieImageView)
@@ -67,4 +69,15 @@ class DetailView: UIViewController {
             movieDescription.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 20)
         ])
     }
+}
+
+extension DetailView: DetailPresenterUI {
+    func updateUI(viewModel: DetailMovieViewModel) {
+        movieImageView.kf.setImage(with: viewModel.backdropPath)
+        movieName.text = viewModel.title
+        movieDescription.text = viewModel.overview
+        
+    }
+    
+    
 }
