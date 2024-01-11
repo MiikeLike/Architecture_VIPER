@@ -41,4 +41,15 @@ class DetailView: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setupView()
+    }
+    func setupView() {
+        view.addSubview(movieImageView)
+        view.addSubview(movieName)
+        view.addSubview(movieDescription)
+    }
 }
