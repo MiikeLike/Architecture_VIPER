@@ -7,13 +7,20 @@
 
 import Foundation
 
+
 protocol DetailPresenterUI: AnyObject {
     func updateUI(viewModel: DetailMovieViewModel)
 }
 
-class DetailPresenter {
+protocol DetailPresentable: AnyObject {
+    var ui: DetailPresenterUI? { get }
+    var movieId: String { get }
+    func onViewAppear()
+}
+
+class DetailPresenter: DetailPresentable {
     weak var ui: DetailPresenterUI?
-    private let movieId: String
+    internal let movieId: String
     private let interactor: DetailInteractable
     private let mapper: MapperDetailMovieViewModel
     
