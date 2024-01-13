@@ -8,10 +8,10 @@
 import Foundation
 
 protocol DetailInteractable: AnyObject {
-    func getDetailMovie(with id: String) async throws -> DetailMovieEntity
+    func getDetailMovie(with id: String, apiConfig: APIConfigurable) async throws -> DetailMovieEntity
 }
 
-class DetailInteractor {
+class DetailInteractor: DetailInteractable {
 
     func getDetailMovie(with id: String, apiConfig: APIConfigurable) async throws -> DetailMovieEntity {
         // Crear la URL utilizando URLComponents para una construcción más segura

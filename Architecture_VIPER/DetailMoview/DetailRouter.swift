@@ -6,14 +6,17 @@
 //
 
 import Foundation
+import UIKit
 
 class DetailRouter {
-    func showDetail(withMovieId movieId : String) {
+    func showDetail(fromViewController: UIViewController, withMovieId movieId: String) {
         let interactor = DetailInteractor()
-        let presenter = DetailPresenter(movieId: movieId,
-                                        interactor: interactor as! DetailInteractable,
-                                        mapper: MapperDetailMovieViewModel())
-        let view = DetailView(presenter: presenter)
-        presenter.ui = view
+            let presenter = DetailPresenter(movieId: movieId,
+                                            interactor: interactor,
+                                            mapper: MapperDetailMovieViewModel())
+            let view = DetailView(presenter: presenter)
+            presenter.ui = view
+
+        fromViewController.present(view, animated: true)
     }
 }
