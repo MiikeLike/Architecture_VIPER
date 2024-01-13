@@ -11,8 +11,9 @@ class DetailRouter {
     func showDetail(withMovieId movieId : String) {
         let interactor = DetailInteractor()
         let presenter = DetailPresenter(movieId: movieId,
-                                        interactor: interactor,
+                                        interactor: interactor as! DetailInteractable,
                                         mapper: MapperDetailMovieViewModel())
-        let view = DetailView()
+        let view = DetailView(presenter: presenter)
+        presenter.ui = view
     }
 }
