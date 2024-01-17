@@ -46,6 +46,7 @@ class ListOfMoviesView: UIViewController {
             moviesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         moviesTableView.dataSource = self
+        moviesTableView.delegate = self
     }
 }
 extension ListOfMoviesView: UITableViewDataSource{
@@ -61,6 +62,12 @@ extension ListOfMoviesView: UITableViewDataSource{
         } else {
             return UITableViewCell()
         }
+    }
+}
+
+extension ListOfMoviesView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onTapCell(atIndex: indexPath.row)
     }
 }
 

@@ -35,13 +35,14 @@ class DetailPresenter: DetailPresentable {
     func onViewAppear() {
         Task {
             do {
-                 let model = try await interactor.getDetailMovie(with: movieId)
+                let apiConfig = APIConfigurable()
+                let model = try await interactor.getDetailMovie(with: movieId, apiConfig: apiConfig)
                 let viewModel = mapper.map(entity: model)
                 await MainActor.run {
                     self.ui?.updateUI(viewModel:viewModel)
                     print(viewModel)
                 }
-                } catch {
+            } catch {
                     print("Error DetailPresenter: \(error)")
             }
         }

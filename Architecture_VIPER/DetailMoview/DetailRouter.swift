@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
-class DetailRouter {
+protocol DetailRouting: AnyObject {
+    func showDetail(fromViewController: UIViewController,
+                    withMovieId movieId: String)
+}
+
+class DetailRouter: DetailRouting {
     func showDetail(fromViewController: UIViewController, withMovieId movieId: String) {
         let interactor = DetailInteractor()
             let presenter = DetailPresenter(movieId: movieId,

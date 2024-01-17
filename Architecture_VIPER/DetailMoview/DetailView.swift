@@ -30,7 +30,7 @@ class DetailView: UIViewController {
     let movieDescription: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 22, weight: .bold, width: .standard)
+        label.font = .systemFont(ofSize: 12, weight: .bold, width: .standard)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -66,7 +66,7 @@ class DetailView: UIViewController {
             
             movieDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             movieDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            movieDescription.topAnchor.constraint(equalTo: movieImageView.bottomAnchor, constant: 20)
+            movieDescription.topAnchor.constraint(equalTo: movieName.bottomAnchor, constant: 20)
         ])
     }
 }

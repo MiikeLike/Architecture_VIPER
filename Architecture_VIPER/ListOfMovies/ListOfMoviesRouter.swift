@@ -9,18 +9,20 @@ import Foundation
 import UIKit
 
 protocol ListOfMoviesRouting: AnyObject {
-    var detailRouter: DetailRouter? { get }
+    var detailRouter: DetailRouting? { get }
     var listOfMoviesView: ListOfMoviesView? { get }
     func showListOfMovies(window: UIWindow?)
     func showDetailMovie(withMovieId movieId: String)
 }
 
 class ListOfMoviesRouter: ListOfMoviesRouting {
-    var detailRouter: DetailRouter?
+    var detailRouter: DetailRouting?
     var listOfMoviesView: ListOfMoviesView?
     func showListOfMovies(window: UIWindow?) {
+        self.detailRouter = DetailRouter()
         let interactor = ListOfMoviesInteractor()
-        let presenter = ListOfMoviesPresenter(listOfMoviesInteractor: interactor)
+        let presenter = ListOfMoviesPresenter(listOfMoviesInteractor: interactor,
+                                              router: self)
         listOfMoviesView = ListOfMoviesView(presenter: presenter)
         presenter.view = listOfMoviesView
    

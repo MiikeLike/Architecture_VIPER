@@ -9,14 +9,14 @@ import Foundation
 
 
 protocol ListOfMoviesInteractable: AnyObject {
-    func getListOfMovies(with id: String, apiConfig: APIConfigurable) async throws -> PopularMovieResponseEntity
+    func getListOfMovies() async throws -> PopularMovieResponseEntity
 }
 
 class ListOfMoviesInteractor: ListOfMoviesInteractable {
     // Modificamos la función para ser asíncrona y lanzar errores
-    func getListOfMovies(with id: String, apiConfig: APIConfigurable) async throws -> PopularMovieResponseEntity {
+    func getListOfMovies() async throws -> PopularMovieResponseEntity {
         // Utilizamos guard para manejar el caso donde no se puede crear la URL
-        guard let url = URL(string: APIConfigurable.baseURL + id) else {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=44f387c88393699f2b01c8d6b0713e4d") else {
             throw APIError.networkError(NSError(domain: NSCocoaErrorDomain, code: NSURLErrorBadURL))
         }
         // Usamos await para realizar la solicitud de red de manera asíncrona
